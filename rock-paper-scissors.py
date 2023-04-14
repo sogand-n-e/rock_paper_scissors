@@ -2,34 +2,41 @@ import random
 
 user_name = str(input('Input your name: '))
 
-
+round_counter = 1
 user_score = 0
 system_score = 0
 
 print(user_name ,'E Mohtaram!')
+print('Wellcome!')
 print('please choose a valid answer!')
 print('valid answers are:')
 print('   Rock:  Rock, rock, R & r ...')
 print('   Paper:  Paper, paper, P & p ...')
 print('   Scissors:  Scissors, scissors, S & s ...')
 
+print('----------------------------')
+
 while True:
     while True:
+        print('Round', round_counter)
         user_choice = input('Enter your choice: ')
     
         if user_choice == 'Rock' or user_choice == 'rock' or user_choice == 'R' or user_choice == 'r':
             user_choice = 'Rock'
             print(user_name,'choosed:', user_choice)
+            round_counter = round_counter + 1
             break
 
         elif user_choice == 'Paper' or user_choice == 'paper' or user_choice == 'P' or user_choice == 'p':
             user_choice = 'Paper'
             print(user_name,'choosed:', user_choice)
+            round_counter = round_counter + 1
             break
 
         elif user_choice == 'Scissors' or user_choice == 'scissors' or user_choice == 'S' or user_choice == 's':
             user_choice = 'Scissors'
             print(user_name,'choosed:', user_choice)
+            round_counter = round_counter + 1
             break
 
         else:
@@ -80,9 +87,10 @@ print('System score is =', system_score)
 print('----------------------------')
 print('----------------------------')
 
+
 with open('attachment_modules_files/win_score.py', 'r') as file:
     winer_score = file.read()
     if user_score == int(winer_score):
-        print('Final winner is YOU !')
+        print('Final winner is', user_name, '!')
     if system_score == int(winer_score):
         print('Final winner is SYSTEM !')
