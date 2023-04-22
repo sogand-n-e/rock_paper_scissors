@@ -6,6 +6,8 @@ round_counter = 1
 user_score = 0
 system_score = 0
 
+final_result = []
+
 print(user_name ,'E Mohtaram!')
 print('Wellcome!')
 print('please choose a valid answer!')
@@ -15,6 +17,9 @@ print('   Paper:  Paper, paper, P & p ...')
 print('   Scissors:  Scissors, scissors, S & s ...')
 
 print('----------------------------')
+
+with open('attachment_modules_and_files/win_score.txt', 'r') as score_file:
+    winer_score = int(score_file.read())
 
 while True:
     while True:
@@ -47,33 +52,47 @@ while True:
     print('System Choice:', system_choice)
 
     if user_choice == system_choice:
-        print('Result: Drow !')
+        result = 'Draw !'
+        final_result.append('D')
+        print(result)
         
     if user_choice == 'Rock':
         if system_choice == 'Scissors':
-            print('Result:', user_name, 'won !')
+            result = user_name + ' won !'
+            final_result.append('W')
+            print(result)
             user_score = user_score + 1
         if system_choice == 'Paper':
-            print('Result: System won !')
+            result = 'System won !'
+            final_result.append('L')
+            print(result)
             system_score = system_score + 1
 
     if user_choice == 'Paper':
         if system_choice == 'Rock':
-            print('Result:', user_name, 'won !')
+            result = user_name + ' won !'
+            final_result.append('W')
+            print(result)
             user_score = user_score + 1
         if system_choice == 'Scissors':
-            print('Result: System won !')
+            result = 'System won !'
+            final_result.append('L')
+            print(result)
             system_score = system_score + 1
 
     if user_choice == 'Scissors':
         if system_choice == 'Paper':
-            print('Result:', user_name, 'won !')
+            result = user_name + ' won !'
+            final_result.append('W')
+            print(result)
             user_score = user_score + 1
         if system_choice == 'Rock':
-            print('Result: System won !')
+            result = 'System won !'
+            final_result.append('L')
+            print(result)
             system_score = system_score + 1
         
-    if user_score == 3 or system_score == 3:
+    if user_score == winer_score or system_score == winer_score:
         break
 
     print(user_name, 'score is =', user_score)
@@ -87,10 +106,10 @@ print('System score is =', system_score)
 print('----------------------------')
 print('----------------------------')
 
+if user_score == winer_score:
+    print('Final winner is', user_name, '!')
+if system_score == winer_score:
+    print('Final winner is SYSTEM !')
 
-with open('attachment_modules_files/win_score.py', 'r') as file:
-    winer_score = file.read()
-    if user_score == int(winer_score):
-        print('Final winner is', user_name, '!')
-    if system_score == int(winer_score):
-        print('Final winner is SYSTEM !')
+for index, value in enumerate(final_result):
+    print('Round ' + str(index + 1) + ':', value)
